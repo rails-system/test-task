@@ -1,0 +1,12 @@
+%div
+  %br/
+  %br/
+  .row
+    .col-md-3 Team Name
+    .col-md-9= team.name
+  %br/
+  .row
+    .col-md-2 Users
+    .col-md-10
+      - users.each do |user|
+        = render partial: "user", locals: { user: user }

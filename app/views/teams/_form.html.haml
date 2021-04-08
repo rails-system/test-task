@@ -1,0 +1,10 @@
+.t_form
+  = form_for @team, remote: true do |f|
+    .form-group.row
+      %label.col-md-3.bold Name
+      .col-md-6
+        = f.text_field :name, :required => true, class: "form-control"
+      .col-md-3
+        = f.submit "add", type: 'submit', class: "btn btn-success"
+#member_form
+  = render partial: "member_form", locals: { team: @team } if params[:action] == 'edit'

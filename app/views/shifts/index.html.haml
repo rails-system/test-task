@@ -1,0 +1,14 @@
+.row
+  .col-md-3
+    Select Team to add Shift
+  .col-md-9
+    = select_tag(:team_id, options_for_select(team_list.map{|t| [t.name, t.id]}))
+#user_box
+:javascript
+  $(document).on("change", "#team_id", function () {
+  	$.ajax({
+  	  type:"GET",
+  	  url:"/shifts/get_users",
+  	  data: {team_id: this.value}
+  	})
+  });

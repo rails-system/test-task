@@ -1,0 +1,30 @@
+%hr/
+.member
+  .row
+    .col-md-3
+      Team Name
+    .col-md-9
+      = team.name
+  %br/
+  .row
+    .col-md-3
+      Member(s)
+    .col-md-9
+      #member_list
+        - team.users.each do |user|
+          = render partial: "member", locals: { user: user }
+  %br/
+  .row
+    .col-md-3
+      Add Member
+    .col-md-9
+      = select_tag(:user_id, options_for_select(user_list.map{|u| [u.name, u.id]}), team_id: team.id)
+:javascript
+  $(document).on("change", "#user_id", function () {
+  	var team_id = $(this).attr('team_id');
+  	$.ajax({
+  	  type:"POST",
+  	  url:"/teams/"+team_id+"/add_member",
+  	  data: {user_id: this.value}
+  	})
+  });

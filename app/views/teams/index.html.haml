@@ -1,0 +1,14 @@
+%h2 Team List
+.team_form
+  = link_to('Add new Team', new_team_path, class: 'btn btn-primary fr')
+%hr/
+%table.table.table-striped
+  %thead
+    %tr
+      %th{scope: "col"} #
+      %th{scope: "col"} Name
+      %th{scope: "col"} Members
+      %th{scope: "col"} Actions
+  %tbody
+    - @teams.each_with_index do |team, i|
+      = render partial: "team", locals: { team: team, i: i }

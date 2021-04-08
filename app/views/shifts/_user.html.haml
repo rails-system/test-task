@@ -1,0 +1,21 @@
+.row
+  %h3
+    Add Shift for #{user.name}
+  %br/
+  .col-md-12
+    - user.shifts.each do |shift|
+      = form_for shift, url: shift_path(shift), method: 'put', id: "#{user.id}#{shift.id}", remote: true do |f|
+        .row
+          .col-md-3
+            = f.label :day
+            = f.text_field :day, readonly: true
+          .col-md-3
+            = f.label :from
+            = f.time_field :from
+          .col-md-3
+            = f.label :to
+            = f.time_field :to
+          .col-md-3
+            = f.submit 'Update'
+      %hr/
+      %br/

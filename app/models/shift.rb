@@ -1,0 +1,11 @@
+class Shift < ApplicationRecord
+  belongs_to :user
+
+  enum day: { monday: 1, tuesday: 2, wednesday: 3, thursday: 4, friday: 5, saturday: 6, sunday: 7 }
+
+  after_update :notify
+
+  def notify
+    NotificationMailer.shift_added(self).deliver
+  end
+end
